@@ -34,11 +34,27 @@ var data = {
 function list(data){
   for (var people in data){
     // console.log(people);
-    console.log("Name: " + data[people].name);
-    console.log("Follows: " + followNameList(data[people].follows));
-    console.log("Followed by: " + whoFollowsMe(people));
+    // console.log("Name: " + data[people].name);
+    // console.log("Follows: " + followNameList(data[people].follows));
+    // console.log("Followed by: " + whoFollowsMe(people));
+    mostFollowers();
 
   }
+}
+
+function mostFollowers(){
+  followsMe = [];
+  mostFollowers = 0;
+  for (var userId in data){
+    for (var i = 0; i < data[userId].follows.length; i++){
+      following = data[people]["follows"][i];
+      followerName = userId;
+      if (follower === people){
+        followsMe.push(followerName);
+      }
+    }
+  }
+  return followsMe;
 }
 
 function followNameList(nameList){
@@ -56,14 +72,16 @@ function whoFollowsMe(userName){
   for (var people in data){
     for (var i = 0; i < data[people].follows.length; i++){
       follower = data[people]["follows"][i];
+      followerName = data[people]["name"];
       if (follower === userName){
-        console.log("found a match for:" + follower);
-        followsMe.push(follower);
+        followsMe.push(followerName);
       }
     }
   }
   return followsMe;
 }
+
+
 
 list(data);
 
